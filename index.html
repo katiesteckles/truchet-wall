@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Truchet Wall</title>
+	<script src="https://randojs.com/1.0.0.js"></script>
+</head>
+<body>
+
+<div id="tiles" height="100">
+</div>
+
+<script>
+triangletile = "points='0,0 0,100 100,100' style='fill:#092327;stroke-width:0;'"
+quadtile = "points='0,0 0,100 100,100 35,65' style='fill:#0B5351;stroke-width:0;'"
+linetile = "points='0,0 10,0 100,90 100,100 90,100 0,10' style='fill:#00A9A5;stroke-width:0;'"
+hextile = "points='0,0 30,0 100,70 100,100 70,100 0,30' style='fill:#4E8098;stroke-width:0;'"
+circletile = "points='0,0 0,100 10.4,99.5 20.8,97.8 30.6,95.2 40.7,91.3 50.2,86.5, 60,80 70.7,70.7 80,60 86.5,50.2 91.3,40.7 95.2,30.6 97.8,20.8 99.5,10.4 100,0' style='fill:#368FD3;stroke-width:0;'"
+
+var tilesList = [triangletile, circletile, linetile, hextile, quadtile]
+
+function drawTiles() {
+if (typeof(currentTiling) == "undefined") { currentTiling = 0 };
+var tiles = document.getElementById("tiles");
+tiles.innerHTML = "";
+for (i = 0; i < 160 ; i++) { 
+	var singleTile = document.createElementNS("http://www.w3.org/2000/svg","svg");
+	singleTile.setAttribute("id","hello");
+	singleTile.setAttribute("width","100");
+	singleTile.setAttribute("height","100");
+	singleTile.setAttribute("style","vertical-align:top");
+	rotation = rando(0,3)*90;
+	singleTile.innerHTML = "<polygon " + tilesList[currentTiling] + " transform='rotate(" + rotation + " 50 50)' />";
+	tiles.appendChild(singleTile);
+	}
+}
+	
+document.addEventListener('keyup', function(e){
+  currentTiling = e.keyCode - 49;
+  console.log(e.keyCode);
+  console.log(currentTiling);
+  drawTiles();
+})
+
+</script>
+
+
+</body>
+</html>
