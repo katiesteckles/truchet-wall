@@ -3,8 +3,9 @@
 <head>
 	<title>Truchet Wall</title>
 	<script src="https://randojs.com/1.0.0.js"></script>
+	<style>html{overflow-y:hidden; overflow-x:hidden;} body{background-color:#000;}</style>
 </head>
-<body bgcolor=#000>
+<body>
 
 <div id="tiles" height="100">
 </div>
@@ -20,20 +21,21 @@ circletile = ["<path d='M 0 0 A 100 100 0 0 1 100 100 L 0 100 L 0 0' style='fill
 invcircletile = ["<path d='M 0 0 A 100 100 0 0 1 100 100 L 100 0 L 0 0' style='fill:#B0BBED;stroke-width:0;'","</path>"]
 smithtile = ["<g stroke=#C0FFEE stroke-width=20 ","<path d='M 0 50 A 50 50 0 0 1 50 100'/><path d='M 100 50 A 50 50 0 0 1 50 0'/></g>"]
 stripetile = ["<g stroke='#DECAFF' stroke-width=10 stroke-linecap='square'","<path d='M 0 100 L 100 0 M 100 25 L 25 100 M 50 100 L 100 50 M 75 100 L 100 75 M 100 99.9 L 99.9 100'/><path d='M 0 0 L 50 50 M 25 75 L 0 50 M 75 25 L 50 0 M 87.5 12.5 L 75 0 M 62.5 37.5 L 25 0 M 37.5 62.5 L 0 25 M 12.5 87.5 L 0 75'/></g>"]
-looptile = ["<g stroke=#DEFACE stroke-width=8 ","<path d='M 25 0 A 25 25 0 0 1 0 25 M 50 0 A 50 50 0 0 1 0 50 M 75 0 A 75 75 0 0 1 0 75 M 4 0 A 4 4 0 0 1 0 4'/><path d='M 4 100 A 96 96 0 0 1 100 4 M 25 100 A 75 75 0 0 1 100 25 M 50 100 A 50 50 0 0 1 100 50 M 75 100 A 25 25 0 0 1 100 75 M 96 100 A 4 4 0 0 1 100 96' fill='#000000'/></g>"]
+looptile = ["<g stroke=#DEFACE stroke-width=8 stroke-linecap='square'","<path d='M 25 0 A 25 25 0 0 1 0 25 M 50 0 A 50 50 0 0 1 0 50 M 75 0 A 75 75 0 0 1 0 75 M 4 0 A 4 4 0 0 1 0 4'/><path d='M 4 100 A 96 96 0 0 1 100 4 M 25 100 A 75 75 0 0 1 100 25 M 50 100 A 50 50 0 0 1 100 50 M 75 100 A 25 25 0 0 1 100 75 M 96 100 A 4 4 0 0 1 100 96' fill='#000000'/></g>"]
 
 //(rx ry x-axis-rotation large-arc-flag sweep-flag x y)
 // http://xahlee.info/js/svg_circle_arc.html
 
 //const obj = {tag = 'p' attrs={points: 3}}
 
-var tilesList = [triangletile, circletile, linetile, hextile, invcircletile, smithtile, stripetile, looptile, notchlinetile, crosstile]
+let tilesList = [triangletile, circletile, linetile, hextile, invcircletile, smithtile, stripetile, looptile, notchlinetile, crosstile]
+const numTiles = Math.ceil(screen.width/100)*Math.ceil(screen.height/100);
 
 function drawTiles() {
 if (typeof(currentTiling) == "undefined") { currentTiling = 0 };
-var tiles = document.getElementById("tiles");
+let tiles = document.getElementById("tiles");
 tiles.innerHTML = "";
-for (i = 0; i < 160 ; i++) { 
+for (i = 0; i < numTiles ; i++) { 
 	var singleTile = document.createElementNS("http://www.w3.org/2000/svg","svg");
 	singleTile.setAttribute("id","hello");
 	singleTile.setAttribute("width","100");
@@ -49,7 +51,7 @@ for (i = 0; i < 160 ; i++) {
 	}
 }
 	
-document.addEventListener('keyup', function(e){
+document.addEventListener('keypress', function(e){
 	const keyPressed = parseInt(e.key)
 	if (!isNaN(keyPressed)) {
 		currentTiling = keyPressed
