@@ -35,10 +35,12 @@ for (i = 0; i < 160 ; i++) {
 }
 	
 document.addEventListener('keyup', function(e){
-  currentTiling = e.keyCode - 49;
-  console.log(e.keyCode);
-  console.log(currentTiling);
-  drawTiles();
+	try {
+  		currentTiling = parseInt(e.key);
+  	}
+  	//console.log(e.keyCode);
+  	//console.log(currentTiling);
+  	drawTiles();
 })
 
 </script>
