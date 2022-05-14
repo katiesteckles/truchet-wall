@@ -11,15 +11,16 @@
 
 <script>
 triangletile = ["<polygon points='0,0 0,100 100,100' style='fill:#fff;stroke-width:0;'","</polygon>"]
-crosstile = ["<g fill='#DEFACE' stroke=#FFFFFF ","<path d='M 25 0 L 25 100 L 75 100 L 75 0 L 25 0' stroke-width=0/><path d='M 0 75 L 100 75 L 100 25 L 0 25 L 0 75' stroke-width=0 /></g>"]
-linetile = ["<path d='M 0 0 L 10 0 L 100 90 L 100 100 L 90 100 L 0 10 M 0 100 L 10 100 L 0 90 L 0 100 M 100 0 L 90 0 L 100 10 L 100 0' style='fill:#0FF1CE;stroke-width:0;'","</path>"]
-notchlinetile = ["<path d='M 0 0 L 10 0 L 100 90 L 100 100 L 90 100 L 0 10' style='fill:#0FF1CE;stroke-width:0;'","</path>"]
+crosstile = ["<g fill='#DEADED' stroke='#000'","<path d='M 27.5 0 L 27.5 100 L 72.5 100 L 72.5 0 L 27.5 0' stroke-width=0 /><path d='M 0 75 L 100 75 L 100 25 L 0 25 L 0 75' stroke-width=0 /><path d='M 0 75 L 100 75 M 100 25 L 0 25' fill='transparent' stroke-width=5 /></g>"]
+// https://twitter.com/RandomTiling/status/1516758138459811840/photo/1
+linetile = ["<path d='M 0 0 L 20 0 L 100 80 L 100 100 L 80 100 L 0 20 M 0 100 L 20 100 L 0 80 L 0 100 M 100 0 L 80 0 L 100 20 L 100 0' style='fill:#F00D1E;stroke-width:0;'","</path>"]
+notchlinetile = ["<path d='M 0 0 L 20 0 L 100 80 L 100 100 L 80 100 L 0 20' style='fill:#0FF1CE;stroke-width:0;'","</path>"]
 hextile = ["<polygon points='0,0 50,0 100,50 100,100 50,100 0,50' style='fill:#CABB1E;stroke-width:0;'","</polygon>"]
-circletile = ["<path d='M 0 0 A 100 100 0 0 1 100 100 L 0 100 L 0 0' style='fill:#DEC0DE;stroke-width:0;'","</path>"]
+circletile = ["<path d='M 0 0 A 100 100 0 0 1 100 100 L 0 100 L 0 0' style='fill:#ffc9ad;stroke-width:0;'","</path>"]
 invcircletile = ["<path d='M 0 0 A 100 100 0 0 1 100 100 L 100 0 L 0 0' style='fill:#B0BBED;stroke-width:0;'","</path>"]
-smithtile = ["<g stroke=#C0FFEE stroke-width=15 ","<path d='M 0 50 A 50 50 0 0 1 50 100'/><path d='M 100 50 A 50 50 0 0 1 50 0'/></g>"]
+smithtile = ["<g stroke=#C0FFEE stroke-width=20 ","<path d='M 0 50 A 50 50 0 0 1 50 100'/><path d='M 100 50 A 50 50 0 0 1 50 0'/></g>"]
 stripetile = ["<g stroke='#DECAFF' stroke-width=10 stroke-linecap='square'","<path d='M 0 100 L 100 0 M 100 25 L 25 100 M 50 100 L 100 50 M 75 100 L 100 75 M 100 99.9 L 99.9 100'/><path d='M 0 0 L 50 50 M 25 75 L 0 50 M 75 25 L 50 0 M 87.5 12.5 L 75 0 M 62.5 37.5 L 25 0 M 37.5 62.5 L 0 25 M 12.5 87.5 L 0 75'/></g>"]
-looptile = ["<g stroke=#DEFACE stroke-width=8 ","<path d='M 25 0 A 25 25 0 0 1 0 25 M 50 0 A 50 50 0 0 1 0 50 M 50 0 A 50 50 0 0 1 0 50  M 0.1 0.1 A 0.1 0.1 0 0 1 0 0'/><path d='M 0 100 A 100 100 0 0 1 100 0 M 25 100 A 75 75 0 0 1 100 25 M 50 100 A 50 50 0 0 1 100 50 M 75 100 A 25 25 0 0 1 100 75' fill='#000000'/></g>"]
+looptile = ["<g stroke=#DEFACE stroke-width=8 ","<path d='M 25 0 A 25 25 0 0 1 0 25 M 50 0 A 50 50 0 0 1 0 50 M 75 0 A 75 75 0 0 1 0 75 M 4 0 A 4 4 0 0 1 0 4'/><path d='M 4 100 A 96 96 0 0 1 100 4 M 25 100 A 75 75 0 0 1 100 25 M 50 100 A 50 50 0 0 1 100 50 M 75 100 A 25 25 0 0 1 100 75 M 96 100 A 4 4 0 0 1 100 96' fill='#000000'/></g>"]
 
 //(rx ry x-axis-rotation large-arc-flag sweep-flag x y)
 // http://xahlee.info/js/svg_circle_arc.html
