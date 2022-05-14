@@ -10,13 +10,23 @@
 </div>
 
 <script>
-triangletile = "points='0,0 0,100 100,100' style='fill:#fff;stroke-width:0;'"
-quadtile = "points='0,0 0,100 100,100 35,65' style='fill:#C1E1EF;stroke-width:0;'"
-linetile = "points='0,0 10,0 100,90 100,100 90,100 0,10' style='fill:#D8B5C4;stroke-width:0;'"
-hextile = "points='0,0 50,0 100,50 100,100 50,100 0,50' style='fill:#FFE2B6;stroke-width:0;'"
-circletile = "points='0,0 0,100 10.4,99.5 20.8,97.8 30.6,95.2 40.7,91.3 50.2,86.5, 60,80 70.7,70.7 80,60 86.5,50.2 91.3,40.7 95.2,30.6 97.8,20.8 99.5,10.4 100,0' style='fill:#F6C8BD;stroke-width:0;'"
+triangletile = ["<polygon points='0,0 0,100 100,100' style='fill:#fff;stroke-width:0;'","</polygon>"]
+crosstile = ["<g fill='#DEFACE' stroke=#FFFFFF ","<path d='M 25 0 L 25 100 L 75 100 L 75 0 L 25 0' stroke-width=0/><path d='M 0 75 L 100 75 L 100 25 L 0 25 L 0 75' stroke-width=0 /></g>"]
+linetile = ["<path d='M 0 0 L 10 0 L 100 90 L 100 100 L 90 100 L 0 10 M 0 100 L 10 100 L 0 90 L 0 100 M 100 0 L 90 0 L 100 10 L 100 0' style='fill:#0FF1CE;stroke-width:0;'","</path>"]
+notchlinetile = ["<path d='M 0 0 L 10 0 L 100 90 L 100 100 L 90 100 L 0 10' style='fill:#0FF1CE;stroke-width:0;'","</path>"]
+hextile = ["<polygon points='0,0 50,0 100,50 100,100 50,100 0,50' style='fill:#CABB1E;stroke-width:0;'","</polygon>"]
+circletile = ["<path d='M 0 0 A 100 100 0 0 1 100 100 L 0 100 L 0 0' style='fill:#DEC0DE;stroke-width:0;'","</path>"]
+invcircletile = ["<path d='M 0 0 A 100 100 0 0 1 100 100 L 100 0 L 0 0' style='fill:#B0BBED;stroke-width:0;'","</path>"]
+smithtile = ["<g stroke=#C0FFEE stroke-width=15 ","<path d='M 0 50 A 50 50 0 0 1 50 100'/><path d='M 100 50 A 50 50 0 0 1 50 0'/></g>"]
+stripetile = ["<g stroke='#DECAFF' stroke-width=10 stroke-linecap='square'","<path d='M 0 100 L 100 0 M 100 25 L 25 100 M 50 100 L 100 50 M 75 100 L 100 75 M 100 99.9 L 99.9 100'/><path d='M 0 0 L 50 50 M 25 75 L 0 50 M 75 25 L 50 0 M 87.5 12.5 L 75 0 M 62.5 37.5 L 25 0 M 37.5 62.5 L 0 25 M 12.5 87.5 L 0 75'/></g>"]
+looptile = ["<g stroke=#DEFACE stroke-width=8 ","<path d='M 25 0 A 25 25 0 0 1 0 25 M 50 0 A 50 50 0 0 1 0 50 M 50 0 A 50 50 0 0 1 0 50  M 0.1 0.1 A 0.1 0.1 0 0 1 0 0'/><path d='M 0 100 A 100 100 0 0 1 100 0 M 25 100 A 75 75 0 0 1 100 25 M 50 100 A 50 50 0 0 1 100 50 M 75 100 A 25 25 0 0 1 100 75' fill='#000000'/></g>"]
 
-var tilesList = [triangletile, circletile, linetile, hextile, quadtile]
+//(rx ry x-axis-rotation large-arc-flag sweep-flag x y)
+// http://xahlee.info/js/svg_circle_arc.html
+
+//const obj = {tag = 'p' attrs={points: 3}}
+
+var tilesList = [triangletile, circletile, linetile, hextile, invcircletile, smithtile, stripetile, looptile, notchlinetile, crosstile]
 
 function drawTiles() {
 if (typeof(currentTiling) == "undefined") { currentTiling = 0 };
@@ -29,17 +39,21 @@ for (i = 0; i < 160 ; i++) {
 	singleTile.setAttribute("height","100");
 	singleTile.setAttribute("style","vertical-align:top");
 	rotation = rando(0,3)*90;
-	singleTile.innerHTML = "<polygon " + tilesList[currentTiling] + " transform='rotate(" + rotation + " 50 50)' />";
+	singleTile.innerHTML = tilesList[currentTiling][0] + " transform='rotate(" + rotation + " 50 50)'>" + tilesList[currentTiling][1];
+	// const elt = singleTile.createElement(obj.tag)
+  	// for (attr: obj.attrs) {
+	// 	elt.setAttribute(attr)
+	//}
 	tiles.appendChild(singleTile);
 	}
 }
 	
 document.addEventListener('keyup', function(e){
-	try {
-  		currentTiling = parseInt(e.key);
-  	}
-  	//console.log(e.keyCode);
-  	//console.log(currentTiling);
+	const keyPressed = parseInt(e.key)
+	if (!isNaN(keyPressed)) {
+		currentTiling = keyPressed
+	}
+  	console.log(currentTiling);
   	drawTiles();
 })
 
